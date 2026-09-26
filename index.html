@@ -137,11 +137,14 @@ section{margin-top:40px}
 .fsep{color:var(--sub)}
 .freset{margin-left:auto;align-self:center;background:transparent;border:1px solid var(--line);border-radius:9px;padding:6px 12px;font-size:12.5px;color:var(--sub);cursor:pointer;transition:.15s}
 .freset:hover{border-color:var(--accent);color:var(--accent)}
+.filter-toggle{display:none;align-items:center;gap:6px;max-width:760px;margin:8px auto 0;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--ink);cursor:pointer;align-self:center}
+.filter-toggle .caret{display:inline-block;transition:transform .2s}
+.filter-toggle.open .caret{transform:rotate(180deg)}
 
 footer{margin-top:50px;text-align:center;color:var(--sub);font-size:12px}
 footer .note{margin-top:6px;font-size:11px;line-height:1.8}
 a{color:var(--accent)}
-@media(max-width:640px){.grid-events{grid-template-columns:1fr}.fr-grid{grid-template-columns:1fr}.filters{flex-direction:column;align-items:stretch;gap:10px}.frow.scr{flex-wrap:wrap}.scr input[type=range]{width:auto;flex:1;min-width:0}.stat{min-width:80px;padding:10px 14px}.stat b{font-size:20px}.search-top{top:58px}}
+@media(max-width:640px){.grid-events{grid-template-columns:1fr}.fr-grid{grid-template-columns:1fr}.filter-toggle{display:inline-flex}.filters{flex-direction:column;align-items:stretch;gap:10px;display:none}.filters.open{display:flex}.frow.scr{flex-wrap:wrap}.scr input[type=range]{width:auto;flex:1;min-width:0}.stat{min-width:80px;padding:10px 14px}.stat b{font-size:20px}.search-top{top:58px}}
 </style>
 </head>
 <body>
@@ -158,6 +161,7 @@ a{color:var(--accent)}
 </div>
 <div class="search-hint">支持标题 / 关键词统一检索，不完整或模糊输入均可匹配，匹配度越高排序越靠前。回车或点击结果跳转详情。</div>
 <div class="results" id="results"></div>
+<button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false">⚙ 筛选条件 <span class="caret">▾</span></button>
 <div class="filters" id="filters">
   <div class="fgroup">
     <span class="flabel">国家范围</span>
@@ -645,6 +649,9 @@ fY0.addEventListener("change",()=>{F.y0=parseInt(fY0.value,10);if(F.y0>F.y1){F.y
 fY1.addEventListener("change",()=>{F.y1=parseInt(fY1.value,10);if(F.y1<F.y0){F.y0=F.y1;fY0.value=F.y0;}onFilter();});
 fReset.onclick=()=>{F.region="all";F.minScore=0;F.maxScore=10;F.y0=Y0;F.y1=Y1;syncControls();onFilter();};
 syncControls();
+/* 筛选面板折叠（移动端） */
+const filterToggle=$("#filterToggle");
+filterToggle.onclick=()=>{const open=$("#filters").classList.toggle("open");filterToggle.classList.toggle("open",open);filterToggle.setAttribute("aria-expanded",open?"true":"false");const c=filterToggle.querySelector(".caret");if(c)c.textContent=open?"▴":"▾";};
 
 /* ============ 顶部搜索（文本 + 筛选联动） ============ */
 const qEl=$("#q"),resEl=$("#results");
