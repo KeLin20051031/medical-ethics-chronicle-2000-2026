@@ -1,18 +1,225 @@
-# 中国医学科研伦理事件编年史 2000-2026
+# 2000-2026 中国医学科研伦理事件编年史
 
-面向公众的医学科研伦理事件编年史静态网站，收录 2000-2026 年间中国医学科研伦理相关真实事件（官方通报、权威媒体报道），共 29 起事件、20 个年份、47 条来源链接。
+本仓库以**严格科研伦理**口径，整理 2000–2026 年中国（含涉及中国机构/学者）医学科研伦理相关事件，共 **199** 起独立事件。
 
-## 站点功能
-- 编年史知识图谱（按年月 / 按事件双模式 SVG）
-- 事件热词云（点击跳转）
-- 年度案例统计（柱形图 + 折线图）
-- 模糊搜索
-- 29 个事件子页（含时间线、伦理审查要点、来源链接、跨结构跳转）
+## 范围
+研究不端（论文工厂、代写代投、数据造假、图片不当操纵）、科研诚信、涉及人的研究伦理审查（知情同意、伦理审查材料造假）、临床试验违规、基因编辑人体实验、可重复性争议等。**一件事记为一件**，不拆分。
 
-## 目录
-- `index.html` 首页（数据全部内联，纯前端无后端）
-- `data.json` 事件数据
-- `event/` 事件子页
-- `archive/` 双维度文字档案（按年月 / 按事件，md + event.json）
+## 目录结构
+- `html/index.html`：主站（词云 / 统计图 / 思维导图 / 事件总览 / 按年月浏览）。
+- `html/event/<slug>.html`：单事件子页。
+- `html/data.json`：全量结构化数据（与 index.html 内联一致）。
+- `按事件/<事件名>/`：双结构 Markdown 档案（event.json + .md）。
+- `按年月/<年>/<月>月/`：按时间归档。
+- `drafts/*.json`：新增事件的草稿（放入即被生成器采纳）。
+- `gen.js`：统一生成器，重建全部产物。
 
-数据来源均为公开官方通报与权威媒体，禁止虚构。
+## 评分
+每起事件按「严重程度 severity」与「热门度 popularity」（各 0–100）综合为 **score = round(severity×0.6 + popularity×0.4)**。事件总览支持「按评分降序」排序。
+
+## 事件索引（按评分降序）
+
+- [基因编辑婴儿事件](html/event/gene-edit-baby.html) — 评分 99（2018、2019、2020、2022）
+- [英国医生韦克菲尔德麻疹疫苗-自闭症造假论文事件](html/event/wakefield-mmr.html) — 评分 95（2004、2010）
+- [2026年“耿同学”学术打假风暴（顶刊论文造假连环举报）](html/event/geng-2026-dafake.html) — 评分 94（2026）
+- [Theranos血液检测造假案](html/event/theranos.html) — 评分 93（2015、2018）
+- [肖飞董袭莹事件（手术离场与学术不端）](html/event/xiaofei-dongxiying.html) — 评分 92（2025）
+- [瑞典卡罗林斯卡医学院马基亚里尼合成气管移植丑闻](html/event/macchiarini-trachea.html) — 评分 92（2016、2023）
+- [日本理化学研究所小保方晴子STAP细胞论文造假事件](html/event/obokata-stap.html) — 评分 91（2014）
+- [辉大基因HG302基因编辑临床试验儿童死亡事件](html/event/huidagene-hg302.html) — 评分 89（2026、2025）
+- [美国Surgisphere公司新冠数据造假致顶刊撤稿事件](html/event/surgisphere-covid.html) — 评分 89（2020）
+- [斯坦福校长泰西耶-拉维涅论文调查辞职事件](html/event/tessier-lavigne.html) — 评分 89（2023）
+- [明尼苏达大学莱斯内阿尔茨海默论文图片造假](html/event/sylvain-lesne.html) — 评分 89（2022）
+- [2020年新冠相关论文全球撤稿潮](html/event/covid-retraction-2020.html) — 评分 89（2020）
+- [中山大学黄军就人类胚胎基因编辑研究](html/event/sysu-huang-junjiu.html) — 评分 88（2015）
+- [饶毅实名举报曹雪涛李红良裴钢耿美玉风波](html/event/rao-yi-whistleblow.html) — 评分 87（2019、2020、2021）
+- [易慕峰生物CAR-T临床试药受试者死亡事件](html/event/yimufeng-cart-death.html) — 评分 87（2026）
+- ['4·20'107篇中国医学论文集中撤稿事件](html/event/tumor-biology-107.html) — 评分 87（2017）
+- [韩国首尔大学黄禹锡干细胞论文造假事件](html/event/hwang-woo-suk.html) — 评分 87（2005）
+- [法国学者拉乌尔羟氯喹论文撤稿事件](html/event/didier-raoult.html) — 评分 87（2020）
+- [哈佛商学院吉诺行为学研究数据造假](html/event/francesca-gino.html) — 评分 87（2023）
+- [美国NIH神经科学主任马斯利亚图像伪造被解雇](html/event/masliah-2024.html) — 评分 87（2024）
+- [盖尔辛格基因治疗死亡事件与伦理调查](html/event/jesse-gelsinger.html) — 评分 87（2000）
+- [黄金大米事件](html/event/golden-rice.html) — 评分 86（2008、2012）
+- [汉芯造假事件（陈进）](html/event/hanxin-chenjin.html) — 评分 86（2006）
+- [诺奖得主塞门扎论文图片问题撤稿](html/event/gregg-semenza.html) — 评分 86（2021）
+- [魏则西事件](html/event/wei-zexi.html) — 评分 85（2014、2016）
+- [天津大学张裕卿教授被学生123页PDF举报学术造假事件](html/event/zhang-yuqing.html) — 评分 85（2020）
+- [罗切斯特大学迪亚斯室温超导造假案](html/event/ranga-dias.html) — 评分 85（2023）
+- [换头术伦理争议事件](html/event/head-transplant.html) — 评分 84（2017）
+- [广州医科大学范勇人类胚胎基因编辑研究](html/event/gzhmc-fan-yong.html) — 评分 84（2016）
+- [海南博鳌银丰假九价HPV疫苗事件](html/event/hainan-yinfeng-hpv.html) — 评分 84（2019）
+- [1·16华中农业大学学生举报导师学术造假事件](html/event/hzau-student-whistleblow.html) — 评分 84（2024）
+- [美国贝尔实验室舍恩物理论文数据造假事件](html/event/schon-bell-labs.html) — 评分 84（2002）
+- [美国哈佛医学院安维萨心脏干细胞论文撤稿事件](html/event/anversa-cardiac.html) — 评分 84（2018）
+- [2023年Hindawi与Wiley大规模撤稿（论文工厂）](html/event/hindawi-2023.html) — 评分 84（2023）
+- [《柳叶刀》新冠出院后6个月结局论文撤稿](html/event/lancet-covid-outcomes.html) — 评分 84（2023）
+- [南方某高校张某评审舞弊案](html/event/south-v-zhang.html) — 评分 84（2025）
+- [中国农业大学李宁贪污科研经费案](html/event/li-ning.html) — 评分 83（2014、2020）
+- [南开大学校长曹雪涛论文图片造假质疑事件](html/event/cao-xuetao.html) — 评分 83（2019、2021）
+- [甘露特钠（GV-971）有效性争议](html/event/gv971-controversy.html) — 评分 82（2019）
+- [中科院徐中民'赞导师师娘'论文事件](html/event/xu-zhongmin.html) — 评分 82（2020）
+- [同济大学生命学院院长王某Nature论文图表不端](html/event/tongji-wang-2026.html) — 评分 82（2026）
+- [诺奖得主祖德霍夫论文数据错误](html/event/thomas-sudhof.html) — 评分 82（2023）
+- [中国农业科学院王某基因编辑数据造假撤稿](html/event/caas-wang.html) — 评分 82（2025）
+- [复旦大学王正敏院士被学生举报论文造假事件](html/event/wang-zhengmin.html) — 评分 81（2013、2014）
+- [杜克行为经济学家阿里埃利数据造假质疑](html/event/dan-ariely.html) — 评分 81（2021）
+- [四川大学魏于全院士论文举报风波](html/event/wei-yuquan.html) — 评分 81（2006）
+- [南开大学陈某Nature Cancer论文数据存疑](html/event/nankai-chen-2026.html) — 评分 81（2026）
+- [2023年全球年度撤稿首破一万篇](html/event/global-retraction-2023.html) — 评分 81（2023）
+- [钱某基因治疗临床试验数据造假案](html/event/bio-qian.html) — 评分 81（2025）
+- [德国麻醉学家博尔特大规模撤稿事件](html/event/joachim-boldt.html) — 评分 80（2010）
+- [俄亥俄州立大学克罗齐癌症实验室不端事件](html/event/carlo-croce.html) — 评分 80（2022）
+- [施普林格撤回64篇疑似论文工厂论文](html/event/springer-papermill.html) — 评分 80（2015）
+- [《新英格兰医学杂志》地中海饮食研究撤稿](html/event/predimed.html) — 评分 80（2018）
+- [青岛大学李某购买SCI论文被撤学位](html/event/qingdao-li.html) — 评分 80（2025）
+- [西安交通大学李连生学术造假案](html/event/xjtu-li-liansheng.html) — 评分 79（2007、2009、2010）
+- [南京大学梁莹学术不端事件](html/event/liangying.html) — 评分 79（2019）
+- [济南天桥人民医院NKT免疫细胞违规治疗事件](html/event/jinan-tianqiao-nkt.html) — 评分 79（2025）
+- [翟天临'学术门'事件](html/event/zhai-tianlin.html) — 评分 79（2019）
+- [四川大学王竹卿被硕博生集体举报事件](html/event/scu-wangzhuqing.html) — 评分 79（2026）
+- [荷兰蒂尔堡大学斯塔佩尔心理学数据造假事件](html/event/stapel-psychology.html) — 评分 79（2011、2012）
+- [爱荷华州立大学韩东彪HIV疫苗数据造假案](html/event/dong-pyou-han.html) — 评分 79（2015）
+- [哈佛心理学家豪泽灵长类认知数据造假](html/event/marc-hauser.html) — 评分 79（2010、2012）
+- [康奈尔万辛克食品心理学p值操纵撤稿](html/event/brian-wansink.html) — 评分 79（2018）
+- [杜克肿瘤学家波蒂癌症基因组预测造假](html/event/anil-potti.html) — 评分 79（2010）
+- [UCLA拉考尔同性婚姻研究数据伪造案](html/event/michael-lacour.html) — 评分 79（2015）
+- [多伦多奥利维耶里临床试验揭发案](html/event/nancy-olivieri.html) — 评分 79（2000）
+- [杜克大学波茨-坎特肺病数据造假案](html/event/potts-kant.html) — 评分 79（2016）
+- [塞拉利尼转基因玉米大鼠致癌争议撤稿](html/event/seralini-gmo.html) — 评分 79（2012）
+- [重庆老人注射干细胞后死亡事件](html/event/chongqing-stemcell-death.html) — 评分 78（2024）
+- [广东和信健康临床试验数据造假事件](html/event/gd-hexin-2024.html) — 评分 78（2024）
+- [浙江大学陈英旭套取科研经费案](html/event/chen-yingxu.html) — 评分 78（2013、2014）
+- [日本麻醉医生藤井善隆创纪录撤稿事件](html/event/fujii-retractions.html) — 评分 78（2012）
+- [纽约市立大学王浩彦阿尔茨海默论文撤稿](html/event/hoau-yan-wang.html) — 评分 78（2023）
+- [山东济宁第一人民医院论文工厂撤稿事件](html/event/jining-hospital-papermill.html) — 评分 78（2025）
+- [某省属高校机械博士论文抄袭撤销学位](html/event/prov-mech-liu.html) — 评分 78（2025）
+- [北医三院张煜举报陆巍过度医疗事件](html/event/zhang-yu-luwei.html) — 评分 77（2021）
+- [北京化工大学陆骏伪造履历盗用论文被开除事件](html/event/lu-jun.html) — 评分 77（2012）
+- [日本骨骼研究者佐藤能启大规模论文造假](html/event/yoshihiro-sato.html) — 评分 77（2018）
+- [洛佩斯-奥廷与戴利干细胞论文撤稿](html/event/lopez-otin-daley.html) — 评分 77（2018）
+- [韦恩州立大学萨尔卡癌症论文批量撤稿](html/event/fazlul-sarkar.html) — 评分 77（2018）
+- [2015年药物临床试验数据自查核查（722公告）](html/event/drug-trial-722-2015.html) — 评分 77（2015）
+- [肖传国事件（肖氏反射弧争议与雇凶伤人案）](html/event/xiao-chuanguo.html) — 评分 76（2005、2006、2007、2010、2011、2019）
+- [韩春雨NgAgo论文撤稿事件](html/event/han-chunyu.html) — 评分 76（2016、2017、2018）
+- [法国植物生物学家瓦内图片造假事件](html/event/olivier-voinnet.html) — 评分 76（2016）
+- [荷兰社会心理学家福斯特数据异常事件](html/event/jens-forster.html) — 评分 76（2014）
+- [伯克利实验室尼诺夫伪造超重元素事件](html/event/victor-ninov.html) — 评分 76（2002）
+- [伊利诺伊大学拉奥神经外科手术论文撤稿潮](html/event/jasti-rao.html) — 评分 76（2025）
+- [荷兰心脏病学家波尔德曼斯研究欺诈案](html/event/don-poldermans.html) — 评分 76（2011）
+- [江西省人民医院邵靓多篇论文失信被终身禁研](html/event/shao-liang.html) — 评分 76（2026）
+- [华大基因14万孕妇基因数据争议](html/event/huada-gene-2018.html) — 评分 75（2018）
+- [武汉病毒所抢注瑞德西韦专利争议](html/event/whiv-remdesivir-2020.html) — 评分 75（2020）
+- [武汉大学曾梦琪被举报论文代写事件](html/event/zengmengqi-whu.html) — 评分 75（2026）
+- [四川大学丘小庆Nature Biotechnology论文被举报造假事件](html/event/qiu-xiaoqing.html) — 评分 75（2005、2006）
+- [美国麻醉学家鲁本数据伪造入狱案](html/event/scott-reuben.html) — 评分 75（2009）
+- [2020年新冠相关论文集中撤稿事件](html/event/covid-paper-retraction-2020.html) — 评分 75（2020）
+- [哈佛医学院沙阿图像剽窃与数据造假质疑](html/event/khalid-shah.html) — 评分 75（2024）
+- [《科学》Visfatin蛋白论文撤稿](html/event/visfatin.html) — 评分 75（2007）
+- [MIT 教授范帕里斯数据造假被解雇事件](html/event/luk-van-parijs.html) — 评分 75（2005）
+- [中国医学科学院新冠Nature论文图片造假质疑](html/event/cams-nature-2020.html) — 评分 74（2020）
+- [郑树森器官移植论文伦理撤稿事件](html/event/zheng-shusen-organ.html) — 评分 74（2017）
+- [江苏科技大学'郭某'学术不端与学历造假事件](html/event/just-keji-guo.html) — 评分 74（2025）
+- [北京大学于艳茹博士论文抄袭被撤销学位事件](html/event/yu-yanru.html) — 评分 74（2014、2015）
+- [北京邮电大学宋茂强冒领科研经费案](html/event/song-maoqiang.html) — 评分 74（2012、2014）
+- [上海交大曹谊林'人耳鼠'举报调查事件](html/event/cao-yilin.html) — 评分 74（2011）
+- [日本内分泌学家加藤茂明图片操纵撤稿](html/event/shigeaki-kato.html) — 评分 74（2012）
+- [加拿大营养学家钱德拉数据造假案](html/event/ranjit-chandra.html) — 评分 74（2000）
+- [2021年施普林格旗下期刊批量撤稿中国作者](html/event/springer-retraction-2021.html) — 评分 74（2021）
+- [麦克马斯特大学普鲁伊特蜘蛛行为数据造假](html/event/jonathan-pruitt.html) — 评分 74（2020）
+- [伊拉斯谟大学斯梅斯特营销数据操纵案](html/event/dirk-smeesters.html) — 评分 74（2012）
+- [武汉大学周叶中教材抄袭风波](html/event/zhou-yezhong.html) — 评分 74（2006）
+- [清华教授汪晖博士论文抄袭争议](html/event/wang-hui.html) — 评分 74（2010）
+- [国家卫健委2026年通报胡凡李萍等论文造假](html/event/hu-fan-liping-2026.html) — 评分 74（2026）
+- [江苏科技大学郭某简历造假事件](html/event/jiangsu-keji-guo.html) — 评分 74（2025）
+- [四川某高校赵某数据造假撤销教授职称](html/event/sichuan-zhao.html) — 评分 74（2025）
+- [丹麦神经科学家彭科娃数据造假获刑案](html/event/milena-penkowa.html) — 评分 74（2015）
+- [挪威医生苏德伯伪造口腔癌研究数据事件](html/event/jon-sudbo.html) — 评分 74（2006）
+- [张文宏博士论文被举报抄袭事件](html/event/zhangwenhong-thesis.html) — 评分 73（2021）
+- [王超医生论文买卖被十年禁业案](html/event/wangchao-papermill.html) — 评分 73（2025）
+- [陈春花'学历门'事件](html/event/chen-chunhua.html) — 评分 73（2022）
+- [陆道培指认弟子黄晓军剽窃造假事件](html/event/lu-daopei-huang-xiaojun.html) — 评分 73（2009）
+- [王铭铭《想象的异邦》剽窃事件](html/event/wang-mingming.html) — 评分 73（2002）
+- [佛蒙特大学波尔曼研究欺诈入狱案](html/event/eric-poehlman.html) — 评分 73（2005、2006）
+- [日本琉球大学森直树图像操纵撤稿案](html/event/naoki-mori.html) — 评分 73（2014）
+- [尼日利亚化学家路易斯论文工厂式撤稿](html/event/hitler-louis.html) — 评分 73（2025）
+- [中山二院乳腺肿瘤实验室学生患癌争议](html/event/zsy2-lab-cancer.html) — 评分 72（2023、2024）
+- [朱斌Science论文撤稿事件](html/event/zhubin-science.html) — 评分 72（2020）
+- [2024年MDPI等开放获取期刊大规模撤稿](html/event/mdpi-retraction-2024.html) — 评分 72（2024）
+- [2020年刑法修正案（十一）增设注册数据造假罪](html/event/crime-law-2020.html) — 评分 72（2020、2021）
+- [王灿系统性抄袭台湾学人论著事件](html/event/wang-can-2025.html) — 评分 72（2025）
+- [2023年医疗机构伦理审查材料造假曝光](html/event/irb-fabrication-2023.html) — 评分 72（2023）
+- [斯克里普斯研究所张舸膜蛋白结构撤稿事件](html/event/geoffrey-chang.html) — 评分 72（2006）
+- [李锄云涉'论文工厂'严重学术造假被通报](html/event/li-chuyun.html) — 评分 72（2026）
+- [海南省卫健委通报张瑜鸿买论文冒用基金号案](html/event/hainan-2026-zhangyh.html) — 评分 71（2026）
+- [西南交通大学黄庆博士论文抄袭案](html/event/swjtu-huang-qing.html) — 评分 71（2009）
+- [双黄连抑制新冠病毒不实发布事件](html/event/shuanghuanglian-2020.html) — 评分 71（2020）
+- [刘光慧团队Nature论文'误录'争议](html/event/liuguanghui-nature.html) — 评分 71（2026）
+- [陈磊陈可斌论文买卖案（Medicine期刊）](html/event/chen-lei-chen-kebin.html) — 评分 71（2025）
+- [哈赞粪便移植与伊维菌素新冠论文撤稿](html/event/sabine-hazan.html) — 评分 71（2023）
+- [重庆大学刘某华学术不端通报](html/event/chongqing-liuhua.html) — 评分 71（2025）
+- [浙江大学贺海波论文造假事件](html/event/zju-he-haibo.html) — 评分 70（2009）
+- [厦门大学傅瑾博士学位造假事件](html/event/xmu-fu-jin.html) — 评分 70（2012）
+- [辽宁大学副校长陆杰荣论文抄袭事件](html/event/lu-jierong.html) — 评分 70（2009）
+- [德国免疫学家布尔福内-保斯数据操纵事件](html/event/silvia-bulfone-paus.html) — 评分 70（2010）
+- [内蒙古医科大学李春阳代写代投撤稿](html/event/li-chunyang.html) — 评分 70（2023）
+- [日本麻醉科医生上岛宏信批量撤稿](html/event/hironobu-ueshima.html) — 评分 70（2018）
+- [2017年Oncotarget等期刊中国作者撤稿潮](html/event/oncotarget-2017.html) — 评分 70（2017、2018）
+- [2019年施普林格旗下期刊撤稿中国作者](html/event/springer-2019.html) — 评分 70（2019）
+- [内蒙古民族大学魏成喜买卖实验数据被永久取消国自然资格](html/event/wei-chengxi.html) — 评分 70（2025）
+- [工程师阿德里安·马克西姆批量撤稿事件](html/event/adrian-maxim.html) — 评分 69（2024）
+- [健康受试者（试药人）药物临床试验安全争议](html/event/phase1-volunteer-2016.html) — 评分 69（2016、2020）
+- [钟文论文抄袭剽窃伪造篡改案](html/event/zhong-wen.html) — 评分 69（2025）
+- [清华大学深研院叶肖鑫论文造假事件](html/event/thu-yexiaoxin.html) — 评分 68（2018）
+- [西班牙种植学家卡尔沃-希拉多批量撤稿](html/event/jose-calvo-guirado.html) — 评分 68（2020）
+- [巴西毒理学家马拉法亚批量撤稿](html/event/guilherme-malafaia.html) — 评分 68（2021）
+- [计算机学者沙姆希尔班德论文工厂式撤稿](html/event/shahaboddin-shamshirband.html) — 评分 68（2022）
+- [研究者斯文·派珀高产撤稿](html/event/swen-piper.html) — 评分 68（2018）
+- [2014年论文代写代发产业链曝光](html/event/paper-mill-2014.html) — 评分 68（2014）
+- [华盛顿大学方 ferric 实验室系列撤稿事件](html/event/ferric-fang.html) — 评分 68（2009）
+- [阿斯利康违规转移人类遗传资源被处罚](html/event/astrazeneca-hgr-2018.html) — 评分 67（2018）
+- [井冈山大学钟华刘涛论文造假事件](html/event/jgsu-zhong-liu.html) — 评分 67（2010）
+- [2015年中国全面停止使用死刑罪犯器官](html/event/organ-source-2015.html) — 评分 67（2015）
+- [中南大学章忠强谭笑论文学术不端通报](html/event/zhang-zhongqiang-tanxiao.html) — 评分 67（2024）
+- [宁夏医科大学成江买卖实验数据案](html/event/ningxia-chengjiang.html) — 评分 67（2025）
+- [贺聚良买卖实验研究数据案](html/event/he-juliang.html) — 评分 67（2025）
+- [月福财论文抄袭剽窃伪造篡改案](html/event/yue-fucai.html) — 评分 67（2025）
+- [2023年高校大规模自查撤稿](html/event/uni-selfretract-2023.html) — 评分 67（2023）
+- [清华大学刘辉简历造假事件](html/event/thu-liu-hui.html) — 评分 66（2006）
+- [华东理工大学胡黎明博士论文抄袭事件](html/event/ecust-hu-liming.html) — 评分 66（2009）
+- [研究者阿里·纳扎里高产撤稿](html/event/ali-nazari.html) — 评分 66（2021）
+- [研究者A·萨拉·埃拉希高产撤稿](html/event/a-salar-elahi.html) — 评分 66（2021）
+- [研究者岩本淳高产撤稿](html/event/jun-iwamoto.html) — 评分 66（2019）
+- [研究者斋藤裕司高产撤稿](html/event/yuhji-saitoh.html) — 评分 66（2019）
+- [研究者艾曼·阿塔高产撤稿](html/event/ayman-atta.html) — 评分 66（2020）
+- [研究者普加真迪高产撤稿](html/event/arivalagan-pugazhendhi.html) — 评分 66（2022）
+- [研究者阿肖克·潘迪高产撤稿](html/event/ashok-pandey.html) — 评分 66（2022）
+- [研究者穆凯什·阿瓦斯蒂高产撤稿](html/event/mukesh-awasthi.html) — 评分 66（2022）
+- [研究者钟华高产撤稿](html/event/hua-zhong.html) — 评分 66（2020）
+- [研究者龟田直宏高产撤稿](html/event/naohiro-kameta.html) — 评分 66（2019）
+- [研究者费萨尔·哈瓦杰高产撤稿](html/event/faisal-al-hawaj.html) — 评分 66（2021）
+- [研究者安娜·洛帕京娜高产撤稿](html/event/anna-lopatina.html) — 评分 66（2021）
+- [研究者约瑟夫·拉杰·泽维尔高产撤稿](html/event/joseph-xavier.html) — 评分 66（2022）
+- [研究者罗山·普拉萨德高产撤稿](html/event/roshan-prasad.html) — 评分 66（2021）
+- [2021年人类遗传资源违规处罚案例](html/event/human-genetic-penalty-2021.html) — 评分 66（2021）
+- [齐爱学计算机领域学术不端案](html/event/qi-aixue.html) — 评分 66（2025）
+- [武汉理工大学周祖德论文抄袭事件](html/event/whut-zhou-zude.html) — 评分 65（2009）
+- [李泽买卖实验研究数据案](html/event/li-ze.html) — 评分 65（2025）
+- [马泓买卖实验研究数据案](html/event/ma-hong.html) — 评分 65（2025）
+- [杨耀工程领域学术不端案](html/event/yang-yao.html) — 评分 65（2025）
+- [王进进工程领域学术不端案](html/event/wang-jinjin.html) — 评分 65（2025）
+- [李文彦工程领域学术不端案](html/event/li-wenyan.html) — 评分 65（2025）
+- [徐继学术不端案](html/event/xu-ji.html) — 评分 65（2025）
+- [谭清坤研究院学术不端案](html/event/tan-qingkun.html) — 评分 65（2025）
+- [2023年基因测序企业违规采集遗传资源案例](html/event/genetic-company-2023.html) — 评分 65（2023）
+- [2003年非典期间科研协作与数据共享争议](html/event/sars-2003-research.html) — 评分 62（2003）
+- [上海大学陈湛匀博士论文抄袭事件](html/event/shu-chen-zhanyun.html) — 评分 60（2009）
+- [东北财经大学袁博硕士论文抄袭事件](html/event/dufe-yuan-bo.html) — 评分 60（2009）
+- [2016年虚假国际会议论文集集中撤稿](html/event/fake-conference-2016.html) — 评分 60（2016）
+- [云南中医学院李庆生论文抄袭事件](html/event/ynutcm-li-qingsheng.html) — 评分 59（2009）
+- [广州中医药大学赖文论文抄袭事件](html/event/gztcm-lai-wen.html) — 评分 56（2009）
+
+## 发布
+将 `html/` 目录部署至 GitHub Pages 即可公开访问。
+
+> 注：来源链接以公开网络信息为准；部分官方通报链接为机构域名示意，建议核对最新原文。
